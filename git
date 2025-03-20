@@ -1,0 +1,17 @@
+[33mcommit 21c364fc8a9a9bd128a8a5a797dc9e8a89f80b5e[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: Eryck Santos <dev.erycksantos@gmail.com>
+Date:   Wed Mar 19 22:33:08 2025 -0300
+
+    Criando a página de cadrastro de clientes.
+
+[33mcommit 847de6cce86ec9561d72c6be824f287167847f3a[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: Eryck Santos <dev.erycksantos@gmail.com>
+Date:   Wed Mar 19 20:38:55 2025 -0300
+
+    Trabalhando na camada de Seviço HTTP do cliente.
+
+[33mcommit 37fff7c4d3ada8b549348a7c5067a03c7022864f[m
+Author: Eryck Santos <dev.erycksantos@gmail.com>
+Date:   Wed Mar 19 19:50:18 2025 -0300
+
+    Setup inicial do projeto.
