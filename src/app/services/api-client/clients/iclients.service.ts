@@ -11,5 +11,5 @@ export interface IClientService {
 
     list(): Observable<ListClientResponse[]>
 
-    findByID(id: number): Observable<DetailClientResponse>
+    findById(id: number): Observable<DetailClientResponse>
 }

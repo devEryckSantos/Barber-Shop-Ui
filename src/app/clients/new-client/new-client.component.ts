@@ -16,7 +16,7 @@ import { SnackbarManagerService } from '../../services/snackbar-manager.service'
   styleUrl: './new-client.component.scss',
   providers: [
     { provide: SERVICES_TOKEN.HTTP.CLIENT, useClass: ClientsService },
-    { provide: SERVICES_TOKEN.SNACKBAR, useClass: SnackbarManagerService}
+    { provide: SERVICES_TOKEN.SNACKBAR, useClass: SnackbarManagerService }
   ]
 })
 export class NewClientComponent implements OnDestroy {
@@ -28,20 +28,22 @@ export class NewClientComponent implements OnDestroy {
     @Inject(SERVICES_TOKEN.SNACKBAR) private readonly snackBarManager: ISnackbarManagerService,
     private readonly router: Router
   ) { }
-  
+
   ngOnDestroy(): void {
     if (this.httpSubscription) {
       this.httpSubscription.unsubscribe()
     }
   }
-  
+
   onSubmitClient(value: ClientModelForm) {
-    console.log(value)
     const { id, ...request } = value
     this.httpSubscription = this.httpService.save(request).subscribe(_ => {
-      this.snackBarManager.show('Usuário cadastrado com sucesso.')
+      this.snackBarManager.show('Usuário cadastrado com sucesso')
       this.router.navigate(['clients/list'])
     })
+    this.snackBarManager.show('Um erro inesperado aconteceu.')
+    this.router.navigate(['clients/list'])
   }
+
 
 }
