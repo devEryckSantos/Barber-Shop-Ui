@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { IDialogManagerService } from '../../../services/idialog-manager.service';
+import { CustomPaginator } from './custom-paginator';
 
 @Component({
   selector: 'app-client-table',
@@ -18,6 +19,7 @@ import { IDialogManagerService } from '../../../services/idialog-manager.service
   styleUrl: './client-table.component.scss',
   providers: [
     { provide: SERVICES_TOKEN.DIALOG, useClass: DialogManagerService },
+    { provide: MatPaginatorIntl, useClass: CustomPaginator }
   ]
 })
 export class ClientTableComponent implements AfterViewInit, OnChanges, OnDestroy {
@@ -59,6 +61,24 @@ export class ClientTableComponent implements AfterViewInit, OnChanges, OnDestroy
 
   formatPhone(phone: string) {
     return `( ${phone.substring(0, 2)} ) ${phone.substring(2, 7)} - ${phone.substring(7)}`
+  }
+
+  update(client: ClientModelTable) {
+    this.onRequestUpdate.emit(client)
+  }
+
+  delete(client: ClientModelTable) {
+    this.dialogManagerService.showYesNoDialog(
+      YesNoDialogComponent,
+      { title: 'Exclusão de Cliente', content: `Confirmar a exclusão do cliente ${client.name}?` }
+    )
+      .subscribe(result => {
+        if (result) {
+          this.onConfirmDelete.emit(client)
+          const updatedList = this.dataSource.data.filter(c => c.id !== client.id)
+          this.dataSource = new MatTableDataSource<ClientModelTable>(updatedList)
+        }
+      })
   }
 
 }
